@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Card } from "@/components/ui/card";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { staggerChildren } from "@/lib/animations";
 import electricianIcon from "@/assets/icon-electrician.png";
 import plumberIcon from "@/assets/icon-plumber.png";
 import carpenterIcon from "@/assets/icon-carpenter.png";
@@ -21,41 +22,58 @@ const categories = [
 ];
 
 const ServiceCategories = () => {
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
+
   return (
-    <section className="py-16 px-4 bg-background">
+    <section ref={ref} className="py-24 px-4 bg-background">
       <div className="container mx-auto max-w-7xl">
-        <div className="text-center mb-12 fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
+        <div className="text-center mb-16">
+          <h2
+            className={`text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight ${
+              isVisible ? "fade-in-up" : "opacity-0"
+            }`}
+          >
             Our Services
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p
+            className={`text-muted-foreground text-lg md:text-xl ${
+              isVisible ? "fade-in-up" : "opacity-0"
+            }`}
+            style={{ animationDelay: "0.1s" }}
+          >
             आमच्या सेवा - Choose from verified local professionals
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
           {categories.map((category, index) => (
             <Link
               key={category.name}
               to={category.path}
-              className="fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={`group ${isVisible ? "fade-in-scale" : "opacity-0"}`}
+              style={staggerChildren(index, 0.08)}
             >
-              <Card className="p-6 text-center transition-all duration-300 hover:shadow-[var(--shadow-card-hover)] hover:-translate-y-2 cursor-pointer border-border bg-card">
-                <div className="mb-4 flex justify-center">
-                  <img
-                    src={category.icon}
-                    alt={`${category.name} icon`}
-                    className="w-16 h-16 md:w-20 md:h-20 object-contain"
-                  />
+              <div className="card-premium p-8 text-center h-full group-hover:border-accent/20 transition-all duration-500">
+                {/* Icon with parallax-like effect */}
+                <div className="mb-6 flex justify-center transform transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-2">
+                  <div className="relative">
+                    <img
+                      src={category.icon}
+                      alt={`${category.name} icon`}
+                      className="w-20 h-20 md:w-24 md:h-24 object-contain relative z-10"
+                    />
+                    {/* Glow effect on hover */}
+                    <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/10 rounded-full blur-xl transition-all duration-500 -z-10" />
+                  </div>
                 </div>
-                <h3 className="font-semibold text-foreground text-base md:text-lg mb-1">
+                
+                <h3 className="font-bold text-foreground text-lg md:text-xl mb-2 tracking-tight">
                   {category.name}
                 </h3>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-muted-foreground text-sm md:text-base">
                   {category.nameHi}
                 </p>
-              </Card>
+              </div>
             </Link>
           ))}
         </div>
