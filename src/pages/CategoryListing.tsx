@@ -6,41 +6,60 @@ import GlassNavbar from "@/components/GlassNavbar";
 import Footer from "@/components/Footer";
 import providerSample from "@/assets/provider-sample.jpg";
 
-// Mock data for providers
-const mockProviders = [
-  {
-    id: "1",
-    name: "Rajesh Kumar",
-    photo: providerSample,
-    location: "Shivaji Nagar",
-    experience: "8 Years",
-    visitingCharge: "150",
-  },
-  {
-    id: "2",
-    name: "Amit Patil",
-    photo: providerSample,
-    location: "Gandhi Chowk",
-    experience: "12 Years",
-    visitingCharge: "200",
-  },
-  {
-    id: "3",
-    name: "Suresh Jadhav",
-    photo: providerSample,
-    location: "Station Road",
-    experience: "6 Years",
-    visitingCharge: "150",
-  },
-  {
-    id: "4",
-    name: "Vijay Deshmukh",
-    photo: providerSample,
-    location: "Market Yard",
-    experience: "10 Years",
-    visitingCharge: "180",
-  },
-];
+// Mock data for providers by category
+const mockProvidersData: Record<string, any[]> = {
+  electrician: [
+    {
+      id: "1",
+      name: "Rajesh Kumar",
+      photo: providerSample,
+      location: "Shivaji Nagar",
+      profession: "Electrician",
+      experience: "8 Years",
+      visitingCharge: "150",
+    },
+    {
+      id: "2",
+      name: "Amit Patil",
+      photo: providerSample,
+      location: "Gandhi Chowk",
+      profession: "Electrician",
+      experience: "12 Years",
+      visitingCharge: "200",
+    },
+  ],
+  plumber: [
+    {
+      id: "3",
+      name: "Suresh Jadhav",
+      photo: providerSample,
+      location: "Station Road",
+      profession: "Plumber",
+      experience: "6 Years",
+      visitingCharge: "150",
+    },
+    {
+      id: "4",
+      name: "Vijay Deshmukh",
+      photo: providerSample,
+      location: "Market Yard",
+      profession: "Plumber",
+      experience: "10 Years",
+      visitingCharge: "180",
+    },
+  ],
+  carpenter: [
+    {
+      id: "5",
+      name: "Santosh Bhosale",
+      photo: providerSample,
+      location: "Railway Station",
+      profession: "Carpenter",
+      experience: "15 Years",
+      visitingCharge: "250",
+    },
+  ],
+};
 
 const CategoryListing = () => {
   const { category } = useParams();
@@ -51,6 +70,9 @@ const CategoryListing = () => {
     ?.split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
+
+  const categoryKey = category?.toLowerCase().replace(/\s+/g, "") || "";
+  const mockProviders = mockProvidersData[categoryKey] || [];
 
   const handleProviderClick = (providerId: string) => {
     navigate(`/provider/${providerId}`);

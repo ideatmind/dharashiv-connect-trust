@@ -27,9 +27,8 @@ const Hero = () => {
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
-      // Convert search query to URL-friendly format
-      const categorySlug = searchQuery.trim().toLowerCase().replace(/\s+/g, '-');
-      navigate(`/category/${categorySlug}`);
+      // Navigate to search results page with query
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
     }
   };
 

@@ -50,27 +50,29 @@ const ServiceCategories = () => {
             <Link
               key={category.name}
               to={category.path}
-              className={`group ${isVisible ? "fade-in-scale" : "opacity-0"}`}
-              style={staggerChildren(index, 0.08)}
+              className="group"
             >
-              <div className="relative card-premium p-8 text-center h-full overflow-hidden">
-                {/* Accent gradient background on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/0 to-accent/0 group-hover:from-accent/5 group-hover:to-accent/10 transition-all duration-500" />
+              <div
+                className={`relative overflow-hidden rounded-3xl bg-gradient-to-br from-card to-card/80 border-2 border-border/50 transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:shadow-[0_25px_70px_-15px_rgba(59,130,246,0.4)] hover:border-primary/50 ${isVisible ? "fade-in-scale" : "opacity-0"}`}
+                style={staggerChildren(index, 0.08)}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                <div className="relative">
-                  <div className="w-20 h-20 mx-auto mb-5 p-4 bg-gradient-to-br from-accent/10 to-accent/5 rounded-3xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 shadow-lg group-hover:shadow-[var(--shadow-accent)]">
+                <div className="relative p-10 flex flex-col items-center gap-5">
+                  <div className="relative w-24 h-24 flex items-center justify-center rounded-3xl bg-gradient-to-br from-primary/15 via-primary/10 to-accent/15 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-primary/20">
+                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <img
                       src={category.icon}
-                      alt={`${category.name} icon`}
-                      className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
+                      alt={category.name}
+                      className="w-14 h-14 object-contain relative z-10 drop-shadow-lg"
                     />
                   </div>
-                  <h3 className="font-bold text-foreground text-base tracking-tight mb-1 transition-colors duration-300 group-hover:text-accent">
+                  
+                  <h3 className="text-xl font-bold text-foreground text-center group-hover:text-primary transition-colors duration-300">
                     {category.name}
                   </h3>
-                  <p className="text-muted-foreground text-sm">
-                    {category.nameHi}
-                  </p>
+                  
+                  <div className="w-16 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
                 </div>
               </div>
             </Link>

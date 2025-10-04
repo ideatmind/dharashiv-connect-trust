@@ -7,6 +7,7 @@ import GlassNavbar from "./components/GlassNavbar";
 import Index from "./pages/Index";
 import CategoryListing from "./pages/CategoryListing";
 import ProviderProfile from "./pages/ProviderProfile";
+import SearchResults from "./pages/SearchResults";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/category/:category" element={<CategoryListing />} />
           <Route path="/provider/:id" element={<ProviderProfile />} />
+          <Route path="/search" element={<SearchResults />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

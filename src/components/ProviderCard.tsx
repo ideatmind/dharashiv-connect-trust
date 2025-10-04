@@ -7,6 +7,7 @@ interface ProviderCardProps {
   name: string;
   photo: string;
   location: string;
+  profession: string;
   experience: string;
   visitingCharge: string;
   onClick: () => void;
@@ -16,6 +17,7 @@ const ProviderCard = ({
   name,
   photo,
   location,
+  profession,
   experience,
   visitingCharge,
   onClick,
@@ -55,9 +57,10 @@ const ProviderCard = ({
 
       {/* Provider Info */}
       <div className="p-6">
-        <h3 className="font-bold text-foreground text-2xl tracking-tight mb-4">
+        <h3 className="font-bold text-foreground text-2xl tracking-tight mb-2">
           {name}
         </h3>
+        <p className="text-accent font-semibold text-lg mb-4">{profession}</p>
 
         <div className="space-y-3 text-sm text-muted-foreground mb-6">
           <div className="flex items-center gap-2">
