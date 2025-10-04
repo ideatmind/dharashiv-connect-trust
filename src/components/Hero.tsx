@@ -1,11 +1,13 @@
 import { Search } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 const Hero = () => {
-  const [isFocused, setIsFocused] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const [animatedWords, setAnimatedWords] = useState<boolean[]>([]);
+  const navigate = useNavigate();
   
   const headline = ["Dharashiv's", "Most", "Trusted"];
   const accentWord = "Service Professionals";
@@ -22,6 +24,20 @@ const Hero = () => {
       }, index * 150);
     });
   }, []);
+
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      // Convert search query to URL-friendly format
+      const categorySlug = searchQuery.trim().toLowerCase().replace(/\s+/g, '-');
+      navigate(`/category/${categorySlug}`);
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
 
   return (
     <section className="relative min-h-[700px] flex items-center justify-center overflow-hidden">
@@ -40,14 +56,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
-      {/* Blur overlay when search is focused */}
-      {isFocused && (
-        <div
-          className="fixed inset-0 z-20 blur-overlay transition-all duration-500"
-          onClick={() => setIsFocused(false)}
-        />
-      )}
 
       {/* Content */}
       <div className="container relative z-10 px-4 py-20 mx-auto">
@@ -82,9 +90,7 @@ const Hero = () => {
 
           {/* Premium Search Bar */}
           <div
-            className={`max-w-3xl mx-auto transition-all duration-500 ${
-              isFocused ? "relative z-30 scale-105" : ""
-            }`}
+            className="max-w-3xl mx-auto fade-in-up"
             style={{ animationDelay: "0.8s" }}
           >
             <div className="flex flex-col sm:flex-row gap-3 bg-white p-3 rounded-2xl shadow-[var(--shadow-strong)]">
@@ -92,13 +98,17 @@ const Hero = () => {
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground h-5 w-5" />
                 <Input
                   type="text"
-                  placeholder="What service do you need today?"
+                  placeholder="Search electrician, plumber, carpenter..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyPress={handleKeyPress}
                   className="pl-12 border-0 focus-visible:ring-0 focus-visible:ring-offset-0 h-14 text-base bg-transparent"
-                  onFocus={() => setIsFocused(true)}
-                  onBlur={() => setTimeout(() => setIsFocused(false), 200)}
                 />
               </div>
-              <Button className="btn-premium h-14 px-10 text-base rounded-xl font-semibold">
+              <Button 
+                onClick={handleSearch}
+                className="btn-premium h-14 px-10 text-base rounded-xl font-semibold"
+              >
                 Search Services
               </Button>
             </div>

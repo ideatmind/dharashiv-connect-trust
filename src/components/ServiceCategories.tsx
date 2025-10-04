@@ -45,7 +45,7 @@ const ServiceCategories = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 md:gap-6">
           {categories.map((category, index) => (
             <Link
               key={category.name}
@@ -53,26 +53,25 @@ const ServiceCategories = () => {
               className={`group ${isVisible ? "fade-in-scale" : "opacity-0"}`}
               style={staggerChildren(index, 0.08)}
             >
-              <div className="card-premium p-8 text-center h-full group-hover:border-accent/20 transition-all duration-500">
-                {/* Icon with parallax-like effect */}
-                <div className="mb-6 flex justify-center transform transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-2">
-                  <div className="relative">
+              <div className="relative card-premium p-8 text-center h-full overflow-hidden">
+                {/* Accent gradient background on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/0 to-accent/0 group-hover:from-accent/5 group-hover:to-accent/10 transition-all duration-500" />
+                
+                <div className="relative">
+                  <div className="w-20 h-20 mx-auto mb-5 p-4 bg-gradient-to-br from-accent/10 to-accent/5 rounded-3xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 shadow-lg group-hover:shadow-[var(--shadow-accent)]">
                     <img
                       src={category.icon}
                       alt={`${category.name} icon`}
-                      className="w-20 h-20 md:w-24 md:h-24 object-contain relative z-10"
+                      className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
                     />
-                    {/* Glow effect on hover */}
-                    <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/10 rounded-full blur-xl transition-all duration-500 -z-10" />
                   </div>
+                  <h3 className="font-bold text-foreground text-base tracking-tight mb-1 transition-colors duration-300 group-hover:text-accent">
+                    {category.name}
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    {category.nameHi}
+                  </p>
                 </div>
-                
-                <h3 className="font-bold text-foreground text-lg md:text-xl mb-2 tracking-tight">
-                  {category.name}
-                </h3>
-                <p className="text-muted-foreground text-sm md:text-base">
-                  {category.nameHi}
-                </p>
               </div>
             </Link>
           ))}

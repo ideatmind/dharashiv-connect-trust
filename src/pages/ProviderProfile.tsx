@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Phone, MessageCircle, MapPin, Briefcase, IndianRupee, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GlassNavbar from "@/components/GlassNavbar";
+import Footer from "@/components/Footer";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import providerSample from "@/assets/provider-sample.jpg";
 
@@ -165,8 +166,8 @@ const ProviderProfile = () => {
         </div>
       </main>
 
-      {/* Fixed Bottom CTA with glassmorphism */}
-      <div className="fixed bottom-0 left-0 right-0 glass-dark shadow-[var(--shadow-strong)] border-t border-white/10 p-5 z-40">
+      {/* Fixed Bottom CTA */}
+      <div className="fixed bottom-0 left-0 right-0 bg-background shadow-[var(--shadow-strong)] border-t border-border p-5 z-40">
         <div className="container mx-auto max-w-4xl">
           <Button
             onClick={handleCall}
@@ -178,6 +179,8 @@ const ProviderProfile = () => {
           </Button>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };

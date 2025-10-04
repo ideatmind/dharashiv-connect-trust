@@ -3,6 +3,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { staggerChildren } from "@/lib/animations";
 import ProviderCard from "@/components/ProviderCard";
 import GlassNavbar from "@/components/GlassNavbar";
+import Footer from "@/components/Footer";
 import providerSample from "@/assets/provider-sample.jpg";
 
 // Mock data for providers
@@ -72,8 +73,8 @@ const CategoryListing = () => {
       </header>
 
       {/* Providers List */}
-      <main ref={ref} className="container mx-auto px-4 pb-12 max-w-4xl">
-        <div className="space-y-5">
+      <main ref={ref} className="container mx-auto px-4 pb-12 max-w-7xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {mockProviders.map((provider, index) => (
             <div
               key={provider.id}
@@ -88,6 +89,8 @@ const CategoryListing = () => {
           ))}
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 };
