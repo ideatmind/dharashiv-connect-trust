@@ -17,6 +17,8 @@ const mockProvidersData: Record<string, any[]> = {
       profession: "Electrician",
       experience: "8 Years",
       visitingCharge: "150",
+      phone: "+91 98765 43210",
+      whatsapp: "+91 98765 43210",
     },
     {
       id: "2",
@@ -26,6 +28,8 @@ const mockProvidersData: Record<string, any[]> = {
       profession: "Electrician",
       experience: "12 Years",
       visitingCharge: "200",
+      phone: "+91 98765 43211",
+      whatsapp: "+91 98765 43211",
     },
   ],
   plumber: [
@@ -37,6 +41,8 @@ const mockProvidersData: Record<string, any[]> = {
       profession: "Plumber",
       experience: "6 Years",
       visitingCharge: "150",
+      phone: "+91 98765 43212",
+      whatsapp: "+91 98765 43212",
     },
     {
       id: "4",
@@ -46,6 +52,8 @@ const mockProvidersData: Record<string, any[]> = {
       profession: "Plumber",
       experience: "10 Years",
       visitingCharge: "180",
+      phone: "+91 98765 43213",
+      whatsapp: "+91 98765 43213",
     },
   ],
   carpenter: [
@@ -57,6 +65,8 @@ const mockProvidersData: Record<string, any[]> = {
       profession: "Carpenter",
       experience: "15 Years",
       visitingCharge: "250",
+      phone: "+91 98765 43214",
+      whatsapp: "+91 98765 43214",
     },
   ],
 };

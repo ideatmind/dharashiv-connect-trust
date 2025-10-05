@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import GlassNavbar from "@/components/GlassNavbar";
 import Footer from "@/components/Footer";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { supabase } from "@/integrations/supabase/client";
 import providerSample from "@/assets/provider-sample.jpg";
 
 const ProviderProfile = () => {
@@ -20,6 +21,7 @@ const ProviderProfile = () => {
     experience: "8 Years",
     visitingCharge: "150",
     phone: "+91 98765 43210",
+    whatsapp: "+91 98765 43210",
     about:
       "Experienced electrician specializing in residential and commercial electrical work. Expert in wiring, installations, repairs, and maintenance. Available for emergency services. Serving Dharashiv and surrounding areas with quality workmanship.",
     services: [
@@ -31,12 +33,26 @@ const ProviderProfile = () => {
     ],
   };
 
+  const trackClick = async (clickType: 'call' | 'whatsapp') => {
+    if (!id) return;
+    try {
+      await supabase.from("provider_clicks").insert({
+        provider_id: id,
+        click_type: clickType,
+      });
+    } catch (error) {
+      console.error("Error tracking click:", error);
+    }
+  };
+
   const handleCall = () => {
+    trackClick('call');
     window.location.href = `tel:${provider.phone}`;
   };
 
   const handleWhatsApp = () => {
-    window.open(`https://wa.me/${provider.phone.replace(/\s/g, "")}`, "_blank");
+    trackClick('whatsapp');
+    window.open(`https://wa.me/${provider.whatsapp.replace(/\D/g, "")}`, "_blank");
   };
 
   return (

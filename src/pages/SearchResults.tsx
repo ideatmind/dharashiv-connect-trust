@@ -16,6 +16,8 @@ const allProviders = [
     profession: "Electrician",
     experience: "8 Years",
     visitingCharge: "150",
+    phone: "+91 98765 43210",
+    whatsapp: "+91 98765 43210",
     keywords: ["electrician", "electric", "wiring", "electrical work"],
   },
   {
@@ -26,6 +28,8 @@ const allProviders = [
     profession: "Electrician",
     experience: "12 Years",
     visitingCharge: "200",
+    phone: "+91 98765 43211",
+    whatsapp: "+91 98765 43211",
     keywords: ["electrician", "electric", "wiring", "electrical work"],
   },
   {
@@ -36,6 +40,8 @@ const allProviders = [
     profession: "Plumber",
     experience: "6 Years",
     visitingCharge: "150",
+    phone: "+91 98765 43212",
+    whatsapp: "+91 98765 43212",
     keywords: ["plumber", "plumbing", "pipe", "water", "leak"],
   },
   {
@@ -46,6 +52,8 @@ const allProviders = [
     profession: "Plumber",
     experience: "10 Years",
     visitingCharge: "180",
+    phone: "+91 98765 43213",
+    whatsapp: "+91 98765 43213",
     keywords: ["plumber", "plumbing", "pipe", "water", "leak"],
   },
   {
@@ -56,6 +64,8 @@ const allProviders = [
     profession: "Carpenter",
     experience: "15 Years",
     visitingCharge: "250",
+    phone: "+91 98765 43214",
+    whatsapp: "+91 98765 43214",
     keywords: ["carpenter", "carpentry", "wood", "furniture", "woodwork"],
   },
   {
@@ -66,6 +76,8 @@ const allProviders = [
     profession: "Painter",
     experience: "7 Years",
     visitingCharge: "120",
+    phone: "+91 98765 43215",
+    whatsapp: "+91 98765 43215",
     keywords: ["painter", "painting", "paint", "wall", "color"],
   },
   {
@@ -76,6 +88,8 @@ const allProviders = [
     profession: "AC Technician",
     experience: "9 Years",
     visitingCharge: "180",
+    phone: "+91 98765 43216",
+    whatsapp: "+91 98765 43216",
     keywords: ["ac", "air conditioner", "cooling", "hvac", "air conditioning"],
   },
   {
@@ -86,6 +100,8 @@ const allProviders = [
     profession: "Appliance Repair",
     experience: "11 Years",
     visitingCharge: "150",
+    phone: "+91 98765 43217",
+    whatsapp: "+91 98765 43217",
     keywords: ["appliance", "repair", "washing machine", "fridge", "refrigerator"],
   },
 ];

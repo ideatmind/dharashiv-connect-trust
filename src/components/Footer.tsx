@@ -73,10 +73,16 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center">
+        <div className="border-t border-primary-foreground/20 mt-8 pt-8 flex items-center justify-between">
           <p className="text-primary-foreground/60 text-sm">
             © {new Date().getFullYear()} Dharashiv Seva. All rights reserved.
           </p>
+          <Link 
+            to="/admin" 
+            className="text-xs text-primary-foreground/40 hover:text-primary-foreground/80 transition-colors"
+          >
+            Admin
+          </Link>
         </div>
       </div>
     </footer>

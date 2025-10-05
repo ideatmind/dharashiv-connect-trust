@@ -1,6 +1,7 @@
-import { Phone, MapPin, CheckCircle } from "lucide-react";
+import { Phone, MapPin, CheckCircle, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
 
 interface ProviderCardProps {
   id: string;
@@ -10,19 +11,47 @@ interface ProviderCardProps {
   profession: string;
   experience: string;
   visitingCharge: string;
+  phone: string;
+  whatsapp?: string | null;
   onClick: () => void;
 }
 
 const ProviderCard = ({
+  id,
   name,
   photo,
   location,
   profession,
   experience,
   visitingCharge,
+  phone,
+  whatsapp,
   onClick,
 }: ProviderCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+
+  const trackClick = async (clickType: 'call' | 'whatsapp') => {
+    try {
+      await supabase.from("provider_clicks").insert({
+        provider_id: id,
+        click_type: clickType,
+      });
+    } catch (error) {
+      console.error("Error tracking click:", error);
+    }
+  };
+
+  const handleCall = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    trackClick('call');
+    window.location.href = `tel:${phone}`;
+  };
+
+  const handleWhatsApp = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    trackClick('whatsapp');
+    window.open(`https://wa.me/${whatsapp?.replace(/\D/g, '')}`, '_blank');
+  };
 
   return (
     <div
@@ -75,17 +104,25 @@ const ProviderCard = ({
           </div>
         </div>
 
-        {/* CTA Button with icon animation */}
-        <Button
-          className="btn-premium w-full group/btn"
-          onClick={(e) => {
-            e.stopPropagation();
-            onClick();
-          }}
-        >
-          <Phone className="h-4 w-4 mr-2 transition-transform duration-300 group-hover/btn:rotate-12" />
-          Call Now
-        </Button>
+        {/* CTA Buttons with icon animation */}
+        <div className="flex gap-2">
+          <Button
+            className="btn-premium flex-1 group/btn"
+            onClick={handleCall}
+          >
+            <Phone className="h-4 w-4 mr-2 transition-transform duration-300 group-hover/btn:rotate-12" />
+            Call
+          </Button>
+          {whatsapp && (
+            <Button
+              className="btn-premium flex-1 group/btn bg-[#25D366] hover:bg-[#20BA5A]"
+              onClick={handleWhatsApp}
+            >
+              <MessageCircle className="h-4 w-4 mr-2" />
+              WhatsApp
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );
