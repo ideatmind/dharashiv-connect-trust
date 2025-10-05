@@ -11,7 +11,7 @@ const Footer = () => {
                 <Home className="h-5 w-5 text-white" />
               </div>
               <span className="text-xl font-bold">
-                Dharashiv <span className="text-accent">Seva</span>
+                Dharashiv <span className="text-yellow-100">Seva</span>
               </span>
             </Link>
             <p className="text-primary-foreground/80 mb-4 max-w-md">
