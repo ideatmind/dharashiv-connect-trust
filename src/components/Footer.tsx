@@ -1,9 +1,7 @@
 import { Home, Mail, Phone, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-
 const Footer = () => {
-  return (
-    <footer className="bg-primary text-primary-foreground mt-20">
+  return <footer className="bg-primary text-primary-foreground mt-20">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
@@ -20,9 +18,7 @@ const Footer = () => {
               Connecting Dharashiv residents with verified, trusted local service professionals. 
               Your one-stop solution for all home services.
             </p>
-            <p className="text-primary-foreground/60 text-sm">
-              धराशिवमधील सर्वात विश्वासार्ह सेवा व्यावसायिक
-            </p>
+            <p className="text-primary-foreground/60 text-sm">धाराशिवमधील सर्वात विश्वासार्ह सेवा व्यावसायिक</p>
           </div>
 
           {/* Quick Links */}
@@ -62,7 +58,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-2 text-primary-foreground/80">
                 <Phone className="h-5 w-5 flex-shrink-0 text-accent" />
-                <span className="text-sm">+91 XXXXX XXXXX</span>
+                <span className="text-sm">+918208646135</span>
               </li>
               <li className="flex items-center gap-2 text-primary-foreground/80">
                 <Mail className="h-5 w-5 flex-shrink-0 text-accent" />
@@ -77,16 +73,11 @@ const Footer = () => {
           <p className="text-primary-foreground/60 text-sm">
             © {new Date().getFullYear()} Dharashiv Seva. All rights reserved.
           </p>
-          <Link 
-            to="/admin" 
-            className="text-xs text-primary-foreground/40 hover:text-primary-foreground/80 transition-colors"
-          >
+          <Link to="/admin" className="text-xs text-primary-foreground/40 hover:text-primary-foreground/80 transition-colors">
             Admin
           </Link>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
