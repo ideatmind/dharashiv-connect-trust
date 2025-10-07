@@ -15,11 +15,12 @@ const Admin = () => {
   const { isAdmin, loading } = useAdminCheck();
 
   useEffect(() => {
-    if (!loading && !user) {
-      navigate("/auth");
-    }
-    if (!loading && user && !isAdmin) {
-      navigate("/");
+    if (!loading) {
+      if (!user) {
+        navigate("/auth");
+      } else if (!isAdmin) {
+        navigate("/");
+      }
     }
   }, [user, isAdmin, loading, navigate]);
 

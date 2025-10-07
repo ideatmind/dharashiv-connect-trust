@@ -27,25 +27,31 @@ const Auth = () => {
     e.preventDefault();
     setLoading(true);
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
-    setLoading(false);
-
     if (error) {
+      setLoading(false);
       toast({
         title: "Error",
         description: error.message,
         variant: "destructive",
       });
-    } else {
+      return;
+    }
+
+    if (data.session) {
       toast({
         title: "Success",
         description: "Logged in successfully",
       });
-      navigate("/admin");
+      // Wait a bit for the session to be fully established
+      setTimeout(() => {
+        navigate("/admin");
+        setLoading(false);
+      }, 500);
     }
   };
 
